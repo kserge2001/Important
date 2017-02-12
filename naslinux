@@ -1,0 +1,15 @@
+#This file describe how to attach a iscsi lun to a centos /linux server
+
+
+yum -y install iscsi-initiator-utils
+service iscsid start
+service iscsi start
+
+iscsiadm -m discovery -t st -p 192.168.1.141
+
+m = mode t= target st= sendtarget p= portal
+
+iscsiadm -m node -T  iqn.2006-01.com.openfiler:tsn.d625a0d9cb77  -p 192.168.1.141 -l
+
+m= mode T= target p= portal l= logon
+
